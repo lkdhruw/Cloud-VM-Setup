@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Define Python version as a variable
-PYTHON_VERSION="3.13.2"
+PYTHON_VERSION="3.13.5"
 
 # Update package lists
-sudo apt update
+sudo apt update && sudo apt upgrade -y
 
 # Install necessary dependencies
 sudo apt install -y build-essential zlib1g-dev libffi-dev \
