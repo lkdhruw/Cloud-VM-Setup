@@ -3,6 +3,9 @@
 # Define Python version as a variable
 PYTHON_VERSION="3.13.5"
 
+# Extract major.minor version (e.g., 3.13 from 3.13.5)
+PYTHON_SHORT_VERSION=$(echo $PYTHON_VERSION | cut -d. -f1,2)
+
 # Update package lists
 sudo apt update && sudo apt upgrade -y
 
@@ -29,10 +32,12 @@ sudo make altinstall
 python3.13 --version
 
 # Install pip for new Python version
-curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python3.13
+# curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python3.13
+curl -sS https://bootstrap.pypa.io/get-pip.py | sudo python$PYTHON_SHORT_VERSION
 
 # Set the new Python version as the default
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.13 2
+# sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python3.13 2
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python$PYTHON_SHORT_VERSION 2
 sudo update-alternatives --config python3
 
 # Verify default Python version
@@ -43,3 +48,4 @@ cd /usr/src
 sudo rm -rf Python-$PYTHON_VERSION Python-$PYTHON_VERSION.tgz
 
 echo "Python $PYTHON_VERSION installation completed successfully and set as default."
+cd ~
