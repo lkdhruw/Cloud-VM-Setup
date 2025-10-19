@@ -38,5 +38,5 @@ ALTER DATABASE mydb OWNER TO myuser;
 \q
 
 # To backup db
-pg_dump -U postgres -h localhost -F c -b -v -f /home/user/backups/mydb_2025_XX.backup mydb
+pg_dump -U postgres -h localhost -F c -b -v -f /home/user/backups/mydb_$(date +%Y_%m_%d).backup mydb
 
